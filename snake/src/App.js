@@ -4,6 +4,7 @@ import useInterval from './useIntervalHook'
 import Snake from './snake/snake';
 import './App.css'
 import SnakeFood from './snake_food/snake_food';
+import GameOver from './gameover/gameover';
 function App(props) {
     
   const [foodalive, setfoodlifestatus] = useState(true)
@@ -25,8 +26,11 @@ function App(props) {
 	useInterval(
 		()=>{
 		setcounter(counter+1)
+		for(let i = 0; i < snakeCoordinates.length - 1; i++){
+		if(snakeCoordinates[i][0] >= 95 || snakeCoordinates[i][0] < 0 || snakeCoordinates[i][1] >= 95 || snakeCoordinates[i][1] < 0){
+			setgameStatus(false)
 		}
-			
+	}}
 		,150)
 	const eatFood = () =>{
 		if(isArrayInArray(snakeCoordinates, foodCoordinate)){
@@ -132,21 +136,14 @@ function App(props) {
           setsnakeCoordinates(snakeCoordinatesLive)
       }        
   }
-	// const boundaries = () =>{
-	// 	if(head[0] >= 105 || head[0] < -15 || head[1] >= 105 || head[1] < -15){
-	// 					setfoodlifestatus("eaten")
 
-	// 	}
-	// }
-
-	// boundaries()
   return (
     <div className="snake_container">
-			{/* className={gameStatus ? "game_grid" : "game_over"} */}
-      <div className="game_grid">					
+		{gameStatus ?       <div className="game_grid">					
         <Snake coord={snakeCoordinates}/>
         <SnakeFood coord={foodCoordinate}/>
-      </div>
+      </div> : <GameOver />}	
+
     </div>
   );
   }
