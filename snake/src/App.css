@@ -1,22 +1,24 @@
 .snake_container {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: green;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: green;
 }
 .game_grid {
-  position: relative;
-  width: 500px;
-  height: 500px;
-  margin: 50px auto;
-  background-color: white;
+	position: relative;
+	width: 500px;
+	height: 500px;
+	margin: 50px auto;
+	background-color: white;
 
-  border: 2px solid black;
+	border: 2px solid black;
 }
 .grid_unit {
-  outline: 1px solid grey;
-  width: 50px;
-  height: 50px;
+	outline: 1px solid grey;
+	width: 50px;
+	height: 50px;
+}
+.game_over {
 }
