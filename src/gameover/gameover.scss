@@ -5,7 +5,7 @@
 	margin: 50px auto;
 	background-color: black;
 
-	border: 2px solid black;
+	border: 17.5px solid white;
 }
 .game_overtitle {
 	color: red;
@@ -16,6 +16,16 @@
 	justify-content: center;
 	text-align: center;
 	margin-top: 40%;
+}
+.playagainorquit {
+	color: white;
+	font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+	font-size: 25px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	margin-top: 0%;
 }
 @mixin anim($name, $dur, $iterate) {
 	animation-name: $name;

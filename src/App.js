@@ -5,6 +5,8 @@ import Snake from './snake/snake';
 import './App.css'
 import SnakeFood from './snake_food/snake_food';
 import GameOver from './gameover/gameover';
+import Controls from './controls/controls'
+import Scoreboard from './scoreboard/scoreboard';
 function App(props) {
     
   const [foodalive, setfoodlifestatus] = useState(true)
@@ -26,12 +28,15 @@ function App(props) {
 	useInterval(
 		()=>{
 		setcounter(counter+1)
-		for(let i = 0; i < snakeCoordinates.length - 1; i++){
-		if(snakeCoordinates[i][0] >= 95 || snakeCoordinates[i][0] < 0 || snakeCoordinates[i][1] >= 95 || snakeCoordinates[i][1] < 0){
+}
+    ,170)
+    useInterval(() =>{
+      		for(let i = 0; i < snakeCoordinates.length - 1; i++){
+		if(snakeCoordinates[i][0] >= 90.1 || snakeCoordinates[i][0] < -.1 || snakeCoordinates[i][1] >= 90.1 || snakeCoordinates[i][1] < -.1){
 			setgameStatus(false)
 		}
-	}}
-		,150)
+	}
+    }, 1)
 	const eatFood = () =>{
 		if(isArrayInArray(snakeCoordinates, foodCoordinate)){
 			if(foodalive){
@@ -103,11 +108,18 @@ function App(props) {
         console.log("right")
         setDirection("right")
     }
+    else if(e.keyCode == "82"){
+      setDirection("down")
+      setsnakeCoordinates([[50,0], [50,10], [50,20]])
+      // setfoodlifestatus(false)
+      setgameStatus(true)
+    }
   }
 
   document.onkeydown = checkKey;
-         let snakeCoordinatesLive = snakeCoordinates
-			let head = snakeCoordinatesLive[snakeCoordinatesLive.length-1]     
+  let snakeCoordinatesLive = snakeCoordinates
+  let head = snakeCoordinatesLive[snakeCoordinatesLive.length-1]    
+   
   const moveSnake = () =>{
 
 			 
@@ -139,11 +151,12 @@ function App(props) {
 
   return (
     <div className="snake_container">
+      <Scoreboard />
 		{gameStatus ?       <div className="game_grid">					
         <Snake coord={snakeCoordinates}/>
         <SnakeFood coord={foodCoordinate}/>
       </div> : <GameOver />}	
-
+      <Controls />
     </div>
   );
   }

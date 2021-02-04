@@ -1,0 +1,11 @@
+.scoreboard_container {
+	height: 300px;
+	width: 400px;
+	border: 10px solid white;
+	margin-left: 2.5%;
+	margin-right: -10%;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
