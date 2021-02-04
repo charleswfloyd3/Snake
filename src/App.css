@@ -1,22 +1,35 @@
 .snake_container {
-	width: 100vw;
 	height: 100vh;
-	display: flex;
+	width: 100vw;
 	align-items: center;
 	justify-content: center;
-	background-color: green;
+	/* background-image: url("backgrondimage.png"); */
+	background-image: linear-gradient(rgb(98, 202, 98), rgb(123, 221, 123));
+	background-repeat: no-repeat;
+	background-size: coverr;
+	display: flex;
 }
 .game_grid {
 	position: relative;
-	width: 500px;
-	height: 500px;
+	width: 80vw;
+	height: 80vh;
 	margin: 50px auto;
-	background-color: white;
-
-	border: 5px solid black;
+	background-color: rgb(0, 0, 0);
+	border: 5px solid white;
 }
 .grid_unit {
 	outline: 1px solid grey;
 	width: 50px;
 	height: 50px;
+}
+.snakeGameTitle {
+	font-family: cursive;
+	text-align: center;
+	font-size: 80px;
+	color: white;
+	padding-top: 50px;
+	margin-bottom: 10px;
+}
+.extrainfo {
+	display: flex;
 }

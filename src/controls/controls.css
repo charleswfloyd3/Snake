@@ -1,20 +1,32 @@
 .controls_image {
-	height: 200px;
+	height: 14vw;
+	margin-top: -7%;
 }
 .controls_parent {
+	border: 5px solid white;
+	border-radius: 50px;
+	height: 20vw;
+	width: 20vw;
 }
 .controls_container {
-	height: 300px;
-	width: 400px;
-	border: 10px solid white;
-	margin-left: -9.5%;
-	margin-right: 2.5%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.controlsTitle {
+	font-size: 2vw;
+	color: white;
+	font-family: cursive;
 
+	text-align: center;
+}
+.letter_controls {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 .r_key,
 .q_key {
-	height: 20px;
+	height: 40px;
+	margin: 0 auto;
 }

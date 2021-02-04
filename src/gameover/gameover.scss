@@ -1,41 +1,31 @@
 .game_over {
 	position: relative;
-	width: 500px;
-	height: 500px;
+	width: 80vw;
+	height: 80vh;
 	margin: 50px auto;
 	background-color: black;
+	border: 7.5px solid white;
+}
 
-	border: 17.5px solid white;
-}
-.game_overtitle {
-	color: red;
-	font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-	font-size: 60px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	margin-top: 40%;
-}
-.playagainorquit {
-	color: white;
-	font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-	font-size: 25px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	margin-top: 0%;
-}
 @mixin anim($name, $dur, $iterate) {
 	animation-name: $name;
 	animation-duration: $dur;
 	animation-iteration-count: $iterate;
 }
-
+.playagainorquit {
+	font-family: cursive;
+	font-size: 2.5vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	margin-top: 0%;
+	@include anim(example, 1s, infinite);
+	margin-top: -5%;
+}
 .game_overtitle {
 	font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-	font-size: 50px;
+	font-size: 9vw;
 	text-align: center;
 	@include anim(example, 1s, infinite);
 }
@@ -74,4 +64,13 @@
 		color: lime;
 		text-shadow: none;
 	}
+}
+.snakeImage {
+	height: 100px;
+	justify-content: center;
+	display: flex;
+	align-items: center;
+	margin: 0 auto;
+	margin-bottom: -170px;
+	margin-top: 100px;
 }
