@@ -1,0 +1,57 @@
+.listOfControls {
+	list-style-type: none;
+	float: right;
+}
+.rkey {
+	margin-top: -55px;
+	margin-left: 25vw;
+	margin-right: 2vw;
+	color: white;
+	font-family: cursive;
+	font-size: 25px;
+}
+.spaceBar {
+	margin-top: -34.5px;
+	margin-left: 37vw;
+	color: white;
+	font-family: cursive;
+	font-size: 25px;
+}
+.qkey {
+	margin-top: -35.5px;
+	margin-left: 52vw;
+	color: white;
+	font-family: cursive;
+	font-size: 25px;
+}
+.leftArrow {
+	margin-top: -37.5px;
+	margin-left: 62.5vw;
+	color: white;
+	font-family: cursive;
+	font-size: 30px;
+}
+.upArrow {
+	margin-top: -52.5px;
+	margin-left: 63.7vw;
+	color: white;
+	font-family: cursive;
+	font-size: 30px;
+}
+.downArrow {
+	margin-top: -20px;
+	margin-left: 63.7vw;
+	color: white;
+	font-family: cursive;
+	font-size: 30px;
+}
+.rightArrow {
+	margin-top: -54.5px;
+	margin-left: 64vw;
+	color: white;
+	font-family: cursive;
+	font-size: 30px;
+}
+.arrowKeys {
+	margin-top: -40px;
+}

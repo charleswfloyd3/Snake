@@ -6,23 +6,24 @@
 	background-color: black;
 	border: 7.5px solid white;
 }
-
-@mixin anim($name, $dur, $iterate) {
-	animation-name: $name;
-	animation-duration: $dur;
-	animation-iteration-count: $iterate;
-}
 .playagainorquit {
 	font-family: cursive;
+	color: lime;
 	font-size: 2.5vw;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
 	margin-top: 0%;
-	@include anim(example, 1s, infinite);
+	// @include anim(example, 1s, infinite);
 	margin-top: -5%;
 }
+@mixin anim($name, $dur, $iterate) {
+	animation-name: $name;
+	animation-duration: $dur;
+	animation-iteration-count: $iterate;
+}
+
 .game_overtitle {
 	font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 	font-size: 9vw;

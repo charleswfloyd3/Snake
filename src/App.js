@@ -1,22 +1,33 @@
-import './App.css';
+//Hooks
 import React, {useState, useRef, useEffect} from 'react'
 import useInterval from './useIntervalHook'
+import useSound from 'use-sound';
+import './eatfood.wav' 
+//Components
 import Snake from './snake/snake';
-import './App.css'
 import SnakeFood from './snake_food/snake_food';
 import GameOver from './gameover/gameover';
-import Controls from './controls/controls'
-import Scoreboard from './scoreboard/scoreboard';
+
+//Styles
+import './App.css'
+import './controls.css'
+
 function App(props) {
-    
+  
+  //Variables
   const [foodalive, setfoodlifestatus] = useState(true)
   const [foodplacement, setfoodplacement] = useState(true)
   const [snakeCoordinates, setsnakeCoordinates] = useState([[50,0], [50,5], [50,10]]);
   const [foodCoordinate, setFoodCoordinate] = useState("");
   const [direction, setDirection] = useState("down")
 	const [counter, setcounter] = useState(0)
-	const [gameStatus, setgameStatus] = useState(true)
+  const [gameStatus, setgameStatus] = useState(true)
+  const [start, setStart] = useState(false)
   const [score, setScore] = useState(0)
+  const [speed, setSpeed] = useState(125)
+
+  //Functions
+  const countOccurrences = (arr, val) => arr.reduce((a, v) => (v === val ? a + 1 : a), 0);
   function isArrayInArray(arr, item){
     var item_as_string = JSON.stringify(item);
 
@@ -27,24 +38,48 @@ function App(props) {
   }
 	useInterval(
 		()=>{
-		setcounter(counter+1)
+    if(start){
+    setcounter(counter+1)
+    }
+    else{
+
+    }
 }
-    ,125)
+    ,speed)
     useInterval(() =>{
       		for(let i = 0; i < snakeCoordinates.length - 1; i++){
-		if(snakeCoordinates[i][0] >= 90.1 || snakeCoordinates[i][0] < -.1 || snakeCoordinates[i][1] >= 90.1 || snakeCoordinates[i][1] < -.1){
-			setgameStatus(false)
-		}
+		if(snakeCoordinates[i][0] >= 90.1 || snakeCoordinates[i][0] < -.1 || snakeCoordinates[i][1] >= 90.1 || snakeCoordinates[i][1] < -.1 || countOccurrences(snakeCoordinates, snakeCoordinates[i]) == 2 ) {
+      setgameStatus(false)
+    }
+
 	}
     }, 1)
+  const EatFoodSound = () =>{
+        useSound(
+    './eatfood.wav',
+    { volume: 0.25 }
+  );
+  }
 	const eatFood = () =>{
 		if(isArrayInArray(snakeCoordinates, foodCoordinate)){
-			if(foodalive){
+        setScore(score+5)
+        // EatFoodSound()
+        if(foodalive){
+        setfoodlifestatus(false)
+        }
+        else{
+        setfoodlifestatus(true)
+
+        }
+			
+
 				if(direction == "down"){
-					snakeCoordinates.unshift([snakeCoordinates[0][0], snakeCoordinates[0][1] - 5])
+          snakeCoordinates.unshift([snakeCoordinates[0][0], snakeCoordinates[0][1] - 5])
+
 				}
 				else if(direction == "up"){
-					snakeCoordinates.unshift([snakeCoordinates[0][0], snakeCoordinates[0][1] + 5])
+          snakeCoordinates.unshift([snakeCoordinates[0][0], snakeCoordinates[0][1] + 5])
+
 				}
 				else if(direction == "left"){
 					snakeCoordinates.unshift([snakeCoordinates[0][0] +5, snakeCoordinates[0][1]])
@@ -53,11 +88,9 @@ function App(props) {
 					snakeCoordinates.unshift([snakeCoordinates[0][0] -5, snakeCoordinates[0][1]])
 
 				}			
-        setfoodlifestatus(false)
-        setScore(score+5)
-			}
+
+			
 			else{
-			setfoodlifestatus(true)
 
 			}
 		}
@@ -111,8 +144,11 @@ function App(props) {
     else if(e.keyCode == "82"){
       setDirection("down")
       setsnakeCoordinates([[50,0], [50,5], [50,10]])
-      // setfoodlifestatus(false)
       setgameStatus(true)
+      setScore(0)
+    }
+    else if(e.keyCode == "81"){
+      setStart(false)
     }
   }
 
@@ -148,19 +184,62 @@ function App(props) {
           setsnakeCoordinates(snakeCoordinatesLive)
       }        
   }
+  const slugGamemode = () =>{
+    setSpeed(200)
+    setStart(true)
 
+  }
+    const wormGamemode = () =>{
+    setSpeed(125)
+    setStart(true)
+
+  }
+    const pythonGamemode = () =>{
+    setSpeed(75)
+    setStart(true)
+  }
   return (
+    <div className="wholepage1">
+      {start ? <div className="whole_page2">
 
-    <div className="snake_container">
+  
+     <div className="snake_container">
       
 		{gameStatus ?<div className="game_grid"><Snake coord={snakeCoordinates}/>
       <SnakeFood coord={foodCoordinate}/>
-      </div> : <GameOver />}
-      <div className="extrainfo">
-      {/* <p className="scoreTitleCurrent">Score: &nbsp;{score} </p> */}
-	
+      </div> : <GameOver score={score}/>}
+     
+      </div>
+       <div className="extrainfo">
+         <div className="scoreContent">
+          <p className="scoreTitleCurrent">Score: &nbsp;</p>
+          <p className="score">{score} </p>
+        </div>
+      <section>
+        <ul className="listOfControls">
+          <li className="rkey">R - restart</li>
+          <li className="spaceBar">Space - Pause </li>
+          <li className="qkey">Q - quit</li>
+          <section className="arrowKeys">
+          <li className="leftArrow">&#11013;</li>
+          <li className="upArrow">&#11014;</li>
+          <li className="downArrow">&#11015;</li>
+          <li className="rightArrow">&#10145;</li>
+        </section>
+        </ul>
+      </section>
       
       </div>
+    </div>: <div className="startScreen">
+      <p className="startTitle"> S N A K E</p>
+            <p className="chooseGameMode">CHOOSE GAMEMODE</p>
+              <ul className="listOfModes">
+                <li className='slug' onClick={slugGamemode}>SLUG</li>
+                <li className="worm" onClick={wormGamemode}>WORM</li>
+                <li className="python" onClick={pythonGamemode}>PYTHON</li>
+
+              </ul>
+      </div>}
     </div>
   );
   }
